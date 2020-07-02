@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://wiki.ros.org/xacro"
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"
        name="ur5" >
-
-  <xacro:arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface"/>
 
   <!-- common stuff -->
   <xacro:include filename="$(find iai_ur_description)/urdf/common.gazebo.xacro" />
@@ -11,11 +9,7 @@
   <xacro:include filename="$(find iai_ur_description)/urdf/ur5.urdf.xacro" />
 
   <!-- arm -->
-  <xacro:arg name="kinematics_config" default="$(find iai_ur_description)/config/ur5_default.yaml"/>
-  <xacro:ur5_robot prefix="" joint_limited="false"
-    transmission_hw_interface="$(arg transmission_hw_interface)"
-    kinematics_file="${load_yaml('$(arg kinematics_config)')}"
-  />
+  <xacro:ur5_robot prefix="" joint_limited="false"/>
 
   <link name="world" />
 
