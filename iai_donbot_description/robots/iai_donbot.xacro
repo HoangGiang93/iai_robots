@@ -1,12 +1,11 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:include filename="$(find iai_ur_description)/urdf/common.gazebo.xacro" />
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
   <xacro:include filename="$(find iai_kms_40_description)/urdf/kms_40.urdf.xacro"/>
   <xacro:include filename="$(find iai_adapters_description)/urdf/adapter_fwa050_wsg50.urdf.xacro"/>
   <xacro:include filename="$(find iai_adapters_description)/urdf/adapter_kms40_fwk050.urdf.xacro"/>
   <xacro:include filename="$(find iai_adapters_description)/urdf/fwk_fwa_050.urdf.xacro"/>
-  <xacro:include filename="$(find iai_wsg_50_description)/urdf/wsg_50.urdf.xacro"/> 
-  <xacro:include filename="$(find iai_boxy_base_2)/robots/base.URDF.xacro"/> 
+  <xacro:include filename="$(find iai_donbot_description)/robots/iai_donbot_gripper.xacro"/> 
+  <xacro:include filename="$(find iai_donbot_description)/robots/iai_donbot_base.xacro"/> 
 
   <material name="gray">
     <color rgba="0.56 0.67 0.67 1"/>
@@ -37,10 +36,8 @@
   <!-- ur5 -->
   <xacro:property name="prefix" value="ur5_" />
   <xacro:include filename="$(find iai_ur_description)/urdf/ur5.urdf.xacro" />
-  <xacro:include filename="$(find iai_donbot_description)/robots/iai_donbot.transmission.xacro" /> <!--Override the transmission-->
   <xacro:macro name="iai_donbot">
     <xacro:ur5_robot prefix="${prefix}" joint_limited="false" />
-    <xacro:ur_arm_transmission prefix="${prefix}" />
     <joint name="arm_base_mounting_joint" type="fixed">
       <parent link="base_link" />
       <child link="${prefix}base_link" />
