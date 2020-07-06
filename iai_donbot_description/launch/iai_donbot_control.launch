@@ -1,5 +1,4 @@
 <launch>
-
   <!-- Load joint controller configurations from YAML file to parameter server -->
   <rosparam file="$(find iai_donbot_description)/config/iai_donbot_control.yaml" command="load"/>
 
@@ -7,14 +6,6 @@
   <node pkg="controller_manager" name="controller_spawner" type="spawner" respawn="false"
     output="screen" ns="/iai_donbot" args="whole_body_controller
     joint_state_controller"/>
-
-  <!-- load the joint controller -->
-  <!--node pkg="controller_manager" name="controller_spawner" type="spawner" respawn="false"
-    output="screen" ns="/iai_donbot" args="ur5_shoulder_pan_joint_position_controller ur5_shoulder_lift_joint_position_controller 
-    ur5_elbow_joint_position_controller ur5_wrist_1_joint_position_controller
-    ur5_wrist_2_joint_position_controller ur5_wrist_3_joint_position_controller 
-    gripper_base_gripper_left_joint_position_controller gripper_base_gripper_right_joint_position_controller
-    joint_state_controller" /-->
 
   <!-- convert joint states to TF transforms for rviz, etc -->
   <node pkg="robot_state_publisher" name="robot_state_publisher" type="robot_state_publisher"

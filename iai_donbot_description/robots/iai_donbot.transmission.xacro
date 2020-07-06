@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
-  <xacro:property name="hw_interface" value="hardware_interface/EffortJointInterface" />
-  <xacro:property name="joint_interface" value="EffortJointInterface" />
+  <xacro:property name="hw_interface" value="hardware_interface/PositionJointInterface" />
+  <xacro:property name="joint_interface" value="PositionJointInterface" />
 
   <xacro:macro name="ur_arm_transmission" params="prefix">
     <transmission name="${prefix}shoulder_pan_trans">
@@ -10,7 +10,6 @@
         <hardwareInterface>${hw_interface}</hardwareInterface>
       </joint>
       <actuator name="${prefix}shoulder_pan_motor">
-        <hardwareInterface>${joint_interface}</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
@@ -21,7 +20,6 @@
         <hardwareInterface>${hw_interface}</hardwareInterface>
       </joint>
       <actuator name="${prefix}shoulder_lift_motor">
-        <hardwareInterface>${joint_interface}</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
@@ -32,7 +30,6 @@
         <hardwareInterface>${hw_interface}</hardwareInterface>
       </joint>
       <actuator name="${prefix}elbow_motor">
-        <hardwareInterface>${joint_interface}</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
@@ -43,7 +40,6 @@
         <hardwareInterface>${hw_interface}</hardwareInterface>
       </joint>
       <actuator name="${prefix}wrist_1_motor">
-        <hardwareInterface>${joint_interface}</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
@@ -54,7 +50,6 @@
         <hardwareInterface>${hw_interface}</hardwareInterface>
       </joint>
       <actuator name="${prefix}wrist_2_motor">
-        <hardwareInterface>${joint_interface}</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
@@ -65,7 +60,6 @@
         <hardwareInterface>${hw_interface}</hardwareInterface>
       </joint>
       <actuator name="${prefix}wrist_3_motor">
-        <hardwareInterface>${joint_interface}</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
@@ -76,7 +70,6 @@
         <hardwareInterface>${hw_interface}</hardwareInterface>
       </joint>
       <actuator name="gripper_base_gripper_left_motor">
-        <hardwareInterface>${joint_interface}</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
@@ -87,7 +80,6 @@
         <hardwareInterface>${hw_interface}</hardwareInterface>
       </joint>
       <actuator name="gripper_base_gripper_right_motor">
-        <hardwareInterface>${joint_interface}</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
