@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
-  <xacro:property name="hw_interface" value="hardware_interface/PositionJointInterface" />
-  <xacro:property name="joint_interface" value="PositionJointInterface" />
+  <xacro:property name="hw_interface" value="hardware_interface/EffortJointInterface" />
 
   <xacro:macro name="ur_arm_transmission" params="prefix">
     <transmission name="${prefix}shoulder_pan_trans">
