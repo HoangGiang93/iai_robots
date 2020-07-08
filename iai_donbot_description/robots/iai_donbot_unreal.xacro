@@ -15,11 +15,11 @@
         <self_collide>1</self_collide>
     </gazebo>
 
-    <link name="world">
+    <link name="map">
     </link>
-    <joint name="world_joint" type="fixed">
+    <joint name="map_joint" type="fixed">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-        <parent link="world"/>
+        <parent link="map"/>
         <child link="odom"/>
     </joint>
 

@@ -3,6 +3,36 @@
   <xacro:property name="hw_interface" value="hardware_interface/EffortJointInterface" />
 
   <xacro:macro name="ur_arm_transmission" params="prefix">
+    <transmission name="odom_x_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="odom_x_joint">
+        <hardwareInterface>${hw_interface}</hardwareInterface>
+      </joint>
+      <actuator name="odom_x_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="odom_y_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="odom_y_joint">
+        <hardwareInterface>${hw_interface}</hardwareInterface>
+      </joint>
+      <actuator name="odom_y_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="odom_z_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="odom_z_joint">
+        <hardwareInterface>${hw_interface}</hardwareInterface>
+      </joint>
+      <actuator name="odom_z_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
     <transmission name="${prefix}shoulder_pan_trans">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="${prefix}shoulder_pan_joint">

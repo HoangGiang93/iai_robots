@@ -1,4 +1,129 @@
 <robot name="base">
+
+    <link name="odom">
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <mass value="1E-4"/>
+            <inertia ixx="1E-4" ixy="0.0" ixz="0.0" iyy="1E-4" iyz="0.0" izz="1E-4"/>
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+            <box size="0.01 0.01 0.01"/>
+            </geometry>
+            <material name="White"/>
+        </visual>
+    </link>
+
+    <joint name="odom_x_joint" type="prismatic">
+        <parent link="odom"/>
+        <child link="odom_x_frame"/>
+        <axis xyz="1 0 0"/>
+        <!-- limits chosen heuristically
+            lower/upper: +-1km to create a quasi limitless prismatic joint
+            velocity: slow walking speed is 3-4km/hour ~= 1m/s
+            effort: reach max speed within 1s, Boxy has a mass of 200kg, so Fmax=200kg*1m/s2 --> 
+        <limit lower="-1000" upper="1000" velocity="1" effort="20000"/>
+    </joint>
+
+    <link name="odom_x_frame">
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <mass value="1E-4"/>
+            <inertia ixx="1E-4" ixy="0.0" ixz="0.0" iyy="1E-4" iyz="0.0" izz="1E-4"/>
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+            <box size="0.01 0.01 0.01"/>
+            </geometry>
+            <material name="White"/>
+        </visual>
+    </link>
+
+    <joint name="odom_y_joint" type="prismatic">
+        <parent link="odom_x_frame"/>
+        <child link="odom_y_frame"/>
+        <axis xyz="0 1 0"/>
+        <!-- limits chosen heuristically
+            lower/upper: +-1km to create a quasi limitless prismatic joint
+            velocity: slow walking speed is 3-4km/hour ~= 1m/s
+            effort: reach max speed within 1s, Boxy has a mass of 200kg, so Fmax=200kg*1m/s2 --> 
+        <limit lower="-1000" upper="1000" velocity="1" effort="20000"/>
+    </joint>
+
+    <link name="odom_y_frame">
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <mass value="1E-4"/>
+            <inertia ixx="1E-4" ixy="0.0" ixz="0.0" iyy="1E-4" iyz="0.0" izz="1E-4"/>
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+            <box size="0.01 0.01 0.01"/>
+            </geometry>
+            <material name="White"/>
+        </visual>
+    </link>
+
+    <joint name="odom_z_joint" type="continuous">
+        <parent link="odom_y_frame"/>
+        <child link="base_footprint"/>
+        <axis xyz="0 0 1"/>
+        <!-- limits chosen heuristically
+            velocity: one slow complete turn around in 5-6s, so 6.2rad/6s ~= 1rad/s
+            effort: reach max speed within 1s, Boxy has a mass of 200kg and a diagonale of 1m, so Fmax=200kg*1m*1m/s2 --> 
+        <limit velocity="1" effort="20000"/>
+    </joint>
+
+    <!-- Definition of base_footprint -> base_link -->
+
+    <link name="base_footprint">
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <mass value="1E-4"/>
+            <inertia ixx="1E-4" ixy="0.0" ixz="0.0" iyy="1E-4" iyz="0.0" izz="1E-4"/>
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+            <box size="0.01 0.01 0.01"/>
+            </geometry>
+            <material name="White"/>
+        </visual>
+    </link>
+
+    <!-- JOINT to define base_footprint -->
+    <joint name="base_footprint_joint" type="fixed">
+        <!-- Explanation of the calculations to find base_link relative
+        to /base_footprint.
+
+        /base_footprint is on the floor, exactly in the center of the four wheels to
+        simplify the odometry and FK/IK calculations of the base.
+        Orientation: X pointing forward, and Z up.
+
+        /base_link is on the front left upper corner of the main alu enclosure.
+            with the same orientation as /base_footprint
+
+        X:  wheel-axis to wheel-axis distance = 789.5mm.
+            Distance front wheel axis to plane where base_link is: 139.5mm
+            X = 789.5/2 - 139.5 = 255.25mm
+    
+        Y:  main alu enclosure is 450mm wide, and the
+            center of the wheels is also the center of the alu enclosure, 
+            so half is Y = 225mm.
+
+        Z:   base_link is at the top of a 120mm plate.
+            The wheels are aligned with the center of the plate.
+            The wheels are 8", so base_link is 
+            Z = 60+4*25.4mm = 161.6mm (above the floor).
+        -->
+        <origin xyz="0.25525 0.225 0.1616" rpy="0 0 0" />
+        <parent link="base_footprint" />
+        <child link="base_link" />
+    </joint>
+
     <link name="base_link">
         <inertial>
         <origin
