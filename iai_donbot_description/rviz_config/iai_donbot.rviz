@@ -89,6 +89,11 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        base_footprint:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         base_link:
           Alpha: 1
           Show Axes: false
@@ -173,6 +178,25 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        map:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        odom:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        odom_x_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        odom_y_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         plate:
           Alpha: 1
           Show Axes: false
@@ -260,7 +284,7 @@ Visualization Manager:
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: base_link
+    Fixed Frame: map
     Frame Rate: 30
   Name: root
   Tools:
@@ -321,4 +345,4 @@ Window Geometry:
     collapsed: false
   Width: 1200
   X: 578
-  Y: 86
+  Y: 56

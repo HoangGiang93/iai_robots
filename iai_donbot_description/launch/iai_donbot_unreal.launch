@@ -1,5 +1,12 @@
 <launch>
 
+  <!-- Load example URDF -->
+  <param name="robot_description" command="$(find xacro)/xacro $(find iai_donbot_description)/robots/iai_donbot_spawn.xacro" />
+
+  <!-- Load hardware interface -->
+  <node name="simulator" pkg="ros_control_boilerplate" type="sim_hw_main"
+        output="screen" ns="/iai_donbot"/>
+
   <!-- Load joint controller configurations from YAML file to parameter server -->
   <rosparam file="$(find iai_donbot_description)/config/iai_donbot_control.yaml" command="load"/>   
 
